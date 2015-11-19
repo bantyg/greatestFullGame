@@ -1,0 +1,9 @@
+div#board
+    h1 Board
+    br
+    br
+    -var suits = Object.keys(board)
+    for suit in suits
+        -var cardNo = board[suit][0].split('-');
+        h2 #{suit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{cardNo[1]}
+

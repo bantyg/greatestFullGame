@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+#board{
+    border: solid black 1px;
+}
+
+#board h1{
+    text-align: center;
+}
