@@ -6,8 +6,8 @@ div#board
     for suit in suits
         -var cardNo = 7;
         if (suit == '♦' || suit == '♥')
-            div(class="col-sm-2 redSuits suit") #{suit}#{cardNo[1]}
+            div(id='#{suit}' class="col-sm-2 redSuits suit") #{suit}#{cardNo[1]}
         else
-            div(class="col-sm-2 suit") #{suit}#{cardNo[1]}
+            div(id='#{suit}' class="col-sm-2 suit") #{suit}#{cardNo[1]}
 
 

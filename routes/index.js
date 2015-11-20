@@ -14,14 +14,14 @@ router.get("/",function(req,res){
 });
 
 router.get("/dashboard",requireRegistration,function(req,res){
-    var opponants = players.filter(function (player) {
+    var opponents = players.filter(function (player) {
             return player != req.session.username;
     });
     if(players.length > 1 && player.players[req.session.username].length == 0){
         game.assignCards(players);
     }
     var playerData = {player:req.session.username,cards:getSuitSymbols(player.players[req.session.username])};
-    res.render("dashboard",{playerData:playerData,board:changeBoard(board),opponants:opponants,});
+    res.render("dashboard",{playerData:playerData,board:changeBoard(board),opponents:opponents,});
 });
 
 var getSuitSymbols = function (cards) {
@@ -65,9 +65,11 @@ router.post("/registerPlayer",function(req,res){
     res.redirect("/dashboard");
 });
 
-router.put("/putCard", function (req, res) {
+router.put('/putCards', function (req, res) {
 
-})
+    var removedCard = player.putCard(req.session.username,req.body.putCard);
+    res.send({'card':removedCard});
+});
 
 
 module.exports = router;
