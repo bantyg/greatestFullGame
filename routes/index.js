@@ -20,9 +20,43 @@ router.get("/dashboard",requireRegistration,function(req,res){
     if(players.length > 1 && player.players[req.session.username].length == 0){
         game.assignCards(players);
     }
-    var playerData = {player:req.session.username,cards:player.players[req.session.username]};
-    res.render("dashboard",{playerData:playerData,board:board,opponants:opponants,});
+    var playerData = {player:req.session.username,cards:getSuitSymbols(player.players[req.session.username])};
+    res.render("dashboard",{playerData:playerData,board:changeBoard(board),opponants:opponants,});
 });
+
+var getSuitSymbols = function (cards) {
+    return cards.map(function (card) {
+        var splitedCardName = card.split('-');
+        switch(splitedCardName[0]){
+            case 'clubs':splitedCardName[0] = '♣';
+                            break;
+            case 'diamonds': splitedCardName[0] = '♦';
+                            break;
+            case 'spades': splitedCardName[0]='♠';
+                            break;
+            case 'hearts':splitedCardName[0]= '♥';
+                break;
+        }
+        return splitedCardName.join('');
+    })
+};
+
+var changeBoard = function(board){
+    var newBoard = {};
+    Object.keys(board).forEach(function (suit) {
+        switch(suit){
+            case 'clubs':newBoard['♣'] = board[suit];
+                break;
+            case 'diamonds': newBoard['♦'] = board[suit];
+                break;
+            case 'spades': newBoard['♠'] = board[suit];
+                break;
+            case 'hearts':newBoard['♥'] = board[suit];
+                break;
+        }
+    })
+    return newBoard;
+}
 
 router.post("/registerPlayer",function(req,res){
     req.session.username = req.body.name;
@@ -30,6 +64,10 @@ router.post("/registerPlayer",function(req,res){
     player.addPlayer(req.session.username);
     res.redirect("/dashboard");
 });
+
+router.put("/putCard", function (req, res) {
+
+})
 
 
 module.exports = router;

@@ -1,9 +1,20 @@
 html
     head
         link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css")
+        script(src="/node_modules/bootstrap/dist/js/bootstrap.min.js")
+        script(src="javascripts/jquery-1.11.3.min.js")
+        script(src="javascripts/dragCard.js")
         title Greatestful
 body
     h1 Hello #{playerData.player}
     h2 Your opponents are #{opponants}
-    h2 Your cards are #{playerData.cards}
+    h2 Your cards are:
+    div(class='cardsContainer container-fluid')
+        div(class='row')
+            for card in playerData.cards
+                if card[0] == '♦' || card[0] == "♥"
+                    span(class="col-sm-1 redSuits card" id='#{card}' onclick='clickOnCard(this)') #{card}
+                else
+                    span(class="col-sm-1 card" id='#{card}' onclick='clickOnCard(this)') #{card}
     include board

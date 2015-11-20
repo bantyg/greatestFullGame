@@ -4,6 +4,10 @@ div#board
     br
     -var suits = Object.keys(board)
     for suit in suits
-        -var cardNo = board[suit][0].split('-');
-        h2 #{suit}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{cardNo[1]}
+        -var cardNo = 7;
+        if (suit == '♦' || suit == '♥')
+            div(class="col-sm-2 redSuits suit") #{suit}#{cardNo[1]}
+        else
+            div(class="col-sm-2 suit") #{suit}#{cardNo[1]}
+
 

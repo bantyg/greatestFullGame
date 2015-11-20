@@ -9,8 +9,40 @@ a {
 
 #board{
     border: solid black 1px;
+    height:1000px;
+    width: 900px;
+    text-align: center;
 }
 
 #board h1{
     text-align: center;
+
+}
+
+.redSuits{
+    color: red;
+}
+
+.card{
+    height: 130px;
+    width: 50px;
+    border: solid 1px black;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.cardsContainer{
+    width: 1000px;
+    height: 450px;
+    display: inline-flex;
+}
+
+.suit{
+    height: 20px;
+    border:solid 1px black;
+    margin-right: 5px;
+    margin-left: 5px;
+
 }
