@@ -8,7 +8,7 @@ var cards = {
 };
 
 var createCards = function () {
-    var allCards = []
+    var allCards = [];
     Object.keys(cards).forEach(function (card) {
         for(var number=1;number<=13;number++){
             if(number <= 13 && number != 7){

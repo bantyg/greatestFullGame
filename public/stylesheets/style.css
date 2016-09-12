@@ -1,29 +1,27 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
-#board{
-    border: solid black 1px;
-    height:1000px;
-    width: 900px;
+#board {
+    height: 100%;
     text-align: center;
 }
 
-#board h1{
+#board h1 {
     text-align: center;
 
 }
 
-.redSuits{
+.redSuits {
     color: red;
 }
 
-.card{
+.card {
     height: 130px;
     width: 50px;
     border: solid 1px black;
@@ -33,16 +31,21 @@ a {
     font-size: large;
 }
 
-.cardsContainer{
+.cardsContainer {
     width: 1000px;
     height: 450px;
     display: inline-flex;
 }
 
-.suit{
+.suit {
     height: 20px;
-    border:solid 1px black;
+    width: 60%;
+    border: solid 1px black;
     margin-right: 5px;
     margin-left: 5px;
+}
 
+.suitContainer {
+    height:100%;
+    border-left: solid black 1px;
 }

@@ -5,6 +5,12 @@ var board = {
     'clubs':[]
 };
 
+var suites = {
+    '♣':'clubes',
+    '♦':'diamonds',
+    '♠': 'spades',
+    '♥':'hearts'
+}
 
 
 var getBoardSetup = function (board) {
@@ -18,7 +24,7 @@ var getBoardSetup = function (board) {
                 break;
             case 'spades': splittedSuitName[0]='♠';
                 break;
-            case 'hearts':splittedSuitName[0]= '♥'
+            case 'hearts':splittedSuitName[0]= '♥';
                 break;
         }
         board[suit][0] = splittedSuitName.join('');
@@ -34,6 +40,23 @@ var setup = function () {
     });
 };
 
+var putCardOnBoard = function (card) {
+    var suit = suites[card[0]];
+    var cardNumber = card.slice(1);
+    var firstCardNumberInSuit = lodash.first(board[suit]).slice(1);
+    var lastCardNumberInSuit = lodash.last(board[suit]).slice(1);
+    if(cardNumber == firstCardNumberInSuit-1){
+        board[suit].splice(0,0,card);
+        return board[suit].indexOf(card)
+    } else if(cardNumber == lastCardNumberInSuit+1){
+        board[suit].push(card);
+        return board[suit].indexOf(card)
+    }else return -1;
+
+};
 
 setup();
-module.exports = getBoardSetup(board);
+module.exports = {
+    board:getBoardSetup(board),
+    putCardOnBoard: putCardOnBoard
+};

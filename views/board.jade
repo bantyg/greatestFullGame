@@ -1,13 +1,17 @@
-div#board
+div#board(class="container")
     h1 Board
     br
     br
-    -var suits = Object.keys(board)
-    for suit in suits
-        -var cardNo = 7;
-        if (suit == '♦' || suit == '♥')
-            div(id='#{suit}' class="col-sm-2 redSuits suit") #{suit}#{cardNo[1]}
-        else
-            div(id='#{suit}' class="col-sm-2 suit") #{suit}#{cardNo[1]}
+    div.row
+        -var suits = Object.keys(board)
+        for suit in suits
+            if (suit == '♦' || suit == '♥')
+                div(class="col-xs-3 suitContainer")
+                    for card in board[suit]
+                        div(id='#{suit}' class="redSuits suit") #{card}
+            else
+                div(class="col-xs-3 suitContainer")
+                        for card in board[suit]
+                            div(id='#{suit}' class="suit") #{card}
 
 
