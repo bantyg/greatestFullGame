@@ -7,8 +7,8 @@ gameModule.assignCards = function(players) {
     var noOfPlayers = players.length;
     var noOfCardsToAssign = shuffledCards.length/noOfPlayers;
     Object.keys(player.players).forEach(function (eachPlayer) {
-        player.players[eachPlayer] = shuffledCards.splice(0,noOfCardsToAssign);
-    })
+        player.players[eachPlayer]['cards'] = shuffledCards.splice(0,noOfCardsToAssign);
+    });
 };
 
 

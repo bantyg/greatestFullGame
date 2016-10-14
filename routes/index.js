@@ -21,9 +21,8 @@ router.get("/dashboard",requireRegistration,function(req,res){
     if(players.length > 1 && player.players[req.session.username].length == 0){
         game.assignCards(players);
     }
-    console.log(board)
-    var playerData = {player:req.session.username,cards:getSuitSymbols(player.players[req.session.username])};
-    res.render("dashboard",{playerData:playerData,board:changeBoard(board),opponents:opponents,});
+    var playerData = {player:req.session.username,cards:getSuitSymbols(player.players[req.session.username]['cards'])};
+    res.render("dashboard",{playerData:playerData,board:changeBoard(board),opponents:opponents  });
 });
 
 router.post("/registerPlayer",function(req,res){
@@ -35,8 +34,7 @@ router.post("/registerPlayer",function(req,res){
 
 router.put('/putCards', function (req, res) {
     var removedCard = player.putCard(req.session.username,req.body.putCard);
-    console.log(removedCard,"???????????????");
-    res.send({'card':removedCard});
+    res.send(removedCard);
 });
 
 

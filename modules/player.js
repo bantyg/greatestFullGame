@@ -4,19 +4,23 @@ var board = require("./board");
 playerModule.players = {};
 
 playerModule.addPlayer = function (player) {
-    this.players[player] = [];
+    this.players[player] = {
+        myTurn: false,
+        cards: []
+    };
 };
 
 playerModule.putCard = function (player,card) {
-    var cardIndex = this.players[player].indexOf(card);
-    this.players[player] = this.players[player].filter(function (playerCard,index) {
+    var cardIndex = this.players[player]['cards'].indexOf(card);
+    this.players[player]['cards'] = this.players[player]['cards'].filter(function (playerCard,index) {
         return index !=cardIndex;
     });
+
     var cardIndexOnBoard = board.putCardOnBoard(card);
     if(cardIndexOnBoard > -1){
-        return {error: "", removedCard:card}
+        return {errorStatus:false, error: "", removedCard:card}
     }
-    return {error: "You put wrong card", removedCard:card};
+    return {errorStatus:true, error: "You put wrong card", removedCard:card};
 };
 
 
